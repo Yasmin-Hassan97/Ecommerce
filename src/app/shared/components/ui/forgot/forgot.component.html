@@ -1,0 +1,86 @@
+<section class="w-1/2 mx-auto shadow rounded-lg bg-gray-200 mt-20 p-5">
+  <h1 class="text-[#6d2e46] text-center text-2xl font-bold">reset password</h1>
+  @if (step==1) {
+  <form [formGroup]="forgotPassForm" (ngSubmit)="forgotPassword()">
+    <div class="mb-6">
+      <label
+        for="uEmail"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >Email :</label
+      >
+      <input
+        formControlName="email"
+        type="email"
+        id="uEmail"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="disabled:bg-green-300 bg-[#6d2e46] py-2 px-4 cursor-pointer rounded-lg text-white hover:bg-[#a26769] transition-all duration-200 mx-auto block"
+    >
+      submit
+    </button>
+  </form>
+  } @if (step==2) {
+  <form [formGroup]="verifyCodeForm" (ngSubmit)="verifyCode()">
+    <div class="mb-6">
+      <label
+        for="uCode"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >reset code :</label
+      >
+      <input
+        formControlName="resetCode"
+        type="text"
+        id="uCode"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="disabled:bg-green-300 bg-[#6d2e46] py-2 px-4 cursor-pointer rounded-lg text-white hover:bg-[#a26769] transition-all duration-200 mx-auto block"
+    >
+      submit
+    </button>
+  </form>
+  } @if(step==3){
+  <form [formGroup]="restPassForm" (ngSubmit)="resetPass()">
+    <div class="mb-6">
+      <label
+        for="uConfirmEmail"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >Email :</label
+      >
+      <input
+        readonly
+        formControlName="email"
+        type="email"
+        id="uConfirmEmail"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full"
+      />
+      <label
+        for="uConfirmPassword"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white mt-4"
+        >New password :</label
+      >
+      <input
+        formControlName="newPassword"
+        type="password"
+        id="uConfirmPassword"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="disabled:bg-green-300 bg-[#6d2e46] py-2 px-4 cursor-pointer rounded-lg text-white hover:bg-[#a26769] transition-all duration-200 mx-auto block"
+    >
+      submit
+    </button>
+  </form>
+
+  }
+</section>

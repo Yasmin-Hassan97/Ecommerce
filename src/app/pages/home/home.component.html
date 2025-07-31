@@ -1,0 +1,104 @@
+<section>
+  <div class="parent grid grid-cols-[70%_minmax(0,1fr)] mt-13">
+    <div>
+      <owl-carousel-o [options]="mainSliderOptions">
+        <ng-template carouselSlide
+          ><img
+            src="/images/slider-image-3.jpeg"
+            class="w-full h-[500px]"
+            alt=""
+          />
+        </ng-template>
+        <ng-template carouselSlide
+          ><img
+            src="/images/slider-image-2.jpeg"
+            class="w-full h-[500px]"
+            alt=""
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img
+            src="/images/slider-image-1.jpeg"
+            class="w-full h-[500px]"
+            alt=""
+        /></ng-template>
+      </owl-carousel-o>
+    </div>
+
+    <div>
+      <img src="/images/slider-2.jpeg" class="w-full h-[250px]" alt="" />
+      <img src="/images/slider-image-1.jpeg" class="w-full h-[250px]" alt="" />
+    </div>
+  </div>
+</section>
+
+<section>
+  <h1 class="font-bold text-[#6d2e46] text-2xl pb-2">Popular categories :</h1>
+  <div>
+    <owl-carousel-o [options]="customOptions">
+      @for ( cat of myCategories; track cat._id) {
+      <ng-template carouselSlide>
+        <img [src]="cat.image" class="w-full h-[250px] object-cover" alt="" />
+        <h3>{{ cat.name }}</h3>
+      </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</section>
+
+<section>
+  <h1 class="font-bold text-[#6d2e46] text-2xl pb-2">Popular Products :</h1>
+  <input
+    type="text"
+    [(ngModel)]="searchItem"
+    placeholder="Search for products..."
+    class="bg-gray-50 mb-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block p-2.5 my-4 mx-auto w-1/2"
+  />
+
+  <div class="parent grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    @for (product of myProducts.slice(0,20) | search : searchItem ; track
+    product._id) {
+    <div
+      class="card shadow-lg rounded-2xl bg-[#ece2d0] relative p-2 overflow-hidden hover:shadow-[#facdce] transition duration-700 hover:scale-105"
+    >
+      <div [routerLink]="['/details', product._id]" class="cursor-pointer">
+        <div class="card-img">
+          <img
+            [src]="product.imageCover"
+            alt=""
+            class="w-[75%] mx-auto rounded-full object-contain"
+          />
+        </div>
+        <div class="card-body px-2 py-4">
+          <div
+            class="flex items-center justify-between mb-2 text-[#6d2e46] text-xl"
+          >
+            <h4 class="text-sm font-bold text-[#6d2e46]">
+              {{ product.category.name }}
+            </h4>
+            <app-wish-list-icon
+              [productId]="product._id"
+              class="cursor-pointer"
+            />
+          </div>
+          <h3 class="font-medium text-lg">
+            {{ product.title.split(" ", 2).join(" ") }}
+          </h3>
+          <div class="flex items-center justify-between">
+            <span>{{ product.price }} EGP:</span>
+            <div class="flex items-center">
+              <i class="fas fa-star text-yellow-300"></i>
+              <span class="text-gray-500"> {{ product.ratingsAverage }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        (click)="addProductToCart(product._id)"
+        class="capitalize py-2 text-white rounded-lg w-[90%] block mx-auto bg-[#6d2e46] cursor-pointer hover:bg-[#a26769] transtion duration-700"
+      >
+        add to cart <i class="fas fa-cart-plus ms-3"></i>
+      </button>
+    </div>
+    }
+  </div>
+</section>

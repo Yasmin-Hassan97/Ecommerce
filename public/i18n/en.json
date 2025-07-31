@@ -1,0 +1,30 @@
+{
+  "navbar": {
+    "home": "home",
+    "cart": "cart",
+    "products": "products",
+    "categories": "categories",
+    "brands": "brands",
+    "wishList": "wishList",
+    "signout": "signout",
+    "login": "login",
+    "register": "register",
+    "changeLanguage": "change Language"
+  },
+  "login": {
+    "loginNow": "login now",
+    "login": "login",
+    "email": "email",
+    "password": "password",
+    "forgotPassword": "forgot password?"
+  },
+  "register": {
+    "registerNow": "register now",
+    "register": "register",
+    "name": "name",
+    "email": "email",
+    "password": "password",
+    "rePassword": "rePassword",
+    "phone": "phone"
+  }
+}

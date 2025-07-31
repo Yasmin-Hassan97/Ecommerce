@@ -1,0 +1,60 @@
+<section class="mt-20 p-5">
+  <h1 class="text-[#6d2e46] font-bold text-4xl text-center mb-10">
+    All Our Products
+    <i class="fa-brands fa-product-hunt text-4xl"></i>
+  </h1>
+
+  <input
+    type="text"
+    [(ngModel)]="searchItem"
+    placeholder="Search for products..."
+    class="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block p-2.5 my-4 mx-auto w-1/2"
+  />
+
+  <div class="parent grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    @for (product of myProducts | search : searchItem ; track product._id) {
+    <div
+      class="card shadow-lg rounded-2xl bg-[#ece2d0] relative p-2 overflow-hidden hover:shadow-[#a26769] transition duration-700 hover:scale-105"
+    >
+      <div [routerLink]="['/details', product._id]" class="cursor-pointer">
+        <div class="card-img">
+          <img
+            [src]="product.imageCover"
+            alt=""
+            class="w-[75%] mx-auto rounded-full object-contain"
+          />
+        </div>
+        <div class="card-body px-2 py-4">
+          <div
+            class="flex items-center justify-between mb-2 text-[#6d2e46] text-xl"
+          >
+            <h4 class="text-sm font-bold text-[#6d2e46]">
+              {{ product.category.name }}
+            </h4>
+            <app-wish-list-icon
+              [productId]="product._id"
+              class="cursor-pointer"
+            />
+          </div>
+          <h3 class="font-medium text-lg">
+            {{ product.title.split(" ", 2).join(" ") }}
+          </h3>
+          <div class="flex items-center justify-between">
+            <span>{{ product.price }} EGP:</span>
+            <div class="flex items-center">
+              <i class="fas fa-star text-yellow-300"></i>
+              <span class="text-gray-500"> {{ product.ratingsAverage }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        (click)="addProductToCart(product._id)"
+        class="capitalize py-2 px-4 text-white rounded-lg w-[90%] block mx-auto bg-[#6d2e46] cursor-pointer hover:bg-[#a26769] transtion duration-700"
+      >
+        add to cart <i class="fas fa-cart-plus ms-3"></i>
+      </button>
+    </div>
+    }
+  </div>
+</section>

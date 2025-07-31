@@ -1,0 +1,9 @@
+<i
+  class="fa-heart"
+  (click)="$event.stopPropagation()"
+  (click)="toggleStatus()"
+  [ngClass]="{
+    'fa-solid': wishlistProductIds.includes(productId),
+    'fa-regular': !wishlistProductIds.includes(productId)
+  }"
+></i>

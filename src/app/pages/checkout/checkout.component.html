@@ -1,0 +1,87 @@
+<section class="w-1/2 mx-auto shadow rounded-lg bg-gray-200 mt-30 p-5">
+  <h1 class="text-[#6d2e46] text-center text-2xl font-bold">pay now!</h1>
+
+  <form [formGroup]="paymentForm" (ngSubmit)="submitPaymentForm()">
+    <div class="mb-6">
+      <label
+        for="uDetails"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >Details :</label
+      >
+      <input
+        formControlName="details"
+        placeholder="enter your details....."
+        type="text"
+        id="uDetails"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+    </div>
+    <div class="mb-6">
+      <label
+        for="uphone"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >Phone :</label
+      >
+      <input
+        formControlName="phone"
+        placeholder="enter your phone..."
+        type="tel"
+        id="uphone"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+    </div>
+
+    <div class="mb-6">
+      <label
+        for="ucity"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >City :</label
+      >
+      <input
+        formControlName="city"
+        placeholder="enter your city....."
+        type="text"
+        id="ucity"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+    </div>
+
+    <h2 class="text-gray-600 mb-6 text-lg font-bold capitalize">
+      payment method :
+    </h2>
+
+    <div class="mb-3 text-lg text-[#6d2e46] font-bold">
+      <input
+        id="Cash"
+        type="radio"
+        name="payment"
+        value="cash"
+        [(ngModel)]="paymentMethod"
+        formControlName="cash"
+      />
+      <label for="Cash" class="ps-3 capitalize"> Cash on Delivery </label>
+    </div>
+    <div class="mb-2 text-lg text-[#6d2e46] font-bold">
+      <input
+        id="Card"
+        type="radio"
+        name="payment"
+        value="card"
+        [(ngModel)]="paymentMethod"
+        formControlName="card"
+        class=""
+      />
+      <label for="Card" class="accent-[#6d2e46] ps-3 capitalize">
+        visa / card
+      </label>
+    </div>
+
+    <button
+      [disabled]="paymentForm.invalid"
+      type="submit"
+      class="disabled:bg-pink-300 bg-[#6d2e46] py-2 px-4 cursor-pointer rounded-lg text-white hover:bg-[#a26769] transition-all duration-200 mx-auto block"
+    >
+      submit
+    </button>
+  </form>
+</section>

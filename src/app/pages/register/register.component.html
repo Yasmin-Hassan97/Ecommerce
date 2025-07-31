@@ -1,0 +1,269 @@
+<section class="w-1/2 mx-auto shadow rounded-lg bg-gray-200 mt-20 p-5">
+  <h1 class="text-[#6d2e46] text-center text-2xl font-bold">
+    {{ "register.registerNow" | translate }}!
+  </h1>
+  <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+    <div class="mb-6">
+      @let nameControl =registerForm.get('name');
+      <label
+        for="uName"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >{{ "register.name" | translate }} :</label
+      >
+      <input
+        formControlName="name"
+        type="text"
+        id="uName"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+
+      <!-- Display error message if name is invalid(or .errors) and touched(means
+      that the user has interacted with the input) -->
+      @if(nameControl?.invalid && nameControl?.touched) {
+      <div
+        class="my-3 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 border-red-300 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+          />
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+          <span class="font-medium"
+            >Ensure that these requirements are met:</span
+          >
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (nameControl?.getError('required')) {
+            <li>Name is required</li>
+            } @if (nameControl?.getError('minlength')) {
+            <li>Name must be more than 3 characters</li>
+            } @if (nameControl?.getError('maxlength')) {
+            <li>Name must be less than 20 characters</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="mb-6">
+      @let emailControl =registerForm.get('email');
+      <label
+        for="uEmail"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >{{ "register.email" | translate }} :</label
+      >
+      <input
+        formControlName="email"
+        type="email"
+        id="uEmail"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-700 focus:border-green-700 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+
+      @if(emailControl?.invalid && emailControl?.touched) {
+      <div
+        class="my-3 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 border-red-300 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+          />
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+          <span class="font-medium"
+            >Ensure that these requirements are met:</span
+          >
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (emailControl?.getError('required')) {
+            <li>Email is required</li>
+            } @if (emailControl?.getError('email')) {
+            <li>invalid email</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="mb-6">
+      @let passwordControl =registerForm.get('password');
+      <label
+        for="uPassword"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >{{ "register.password" | translate }} :</label
+      >
+      <input
+        formControlName="password"
+        type="password"
+        id="uPassword"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+
+      @if(passwordControl?.invalid && passwordControl?.touched) {
+      <div
+        class="my-3 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 border-red-300 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+          />
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+          <span class="font-medium"
+            >Ensure that these requirements are met:</span
+          >
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (passwordControl?.getError('required')) {
+            <li>password is required</li>
+            } @if (passwordControl?.getError('pattern')) {
+            <li>
+              password must start with capital character and consist of at least
+              6 characters
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="mb-6">
+      <label
+        for="urePassword"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >{{ "register.rePassword" | translate }} :</label
+      >
+      <input
+        formControlName="rePassword"
+        type="password"
+        id="urePassword"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+
+      @if(registerForm.getError('mismatch') &&
+      registerForm.get('rePassword')?.touched) {
+      <div
+        class="my-3 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 border-red-300 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+          />
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+          <span class="font-medium"
+            >Ensure that these requirements are met:</span
+          >
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (registerForm.get('rePassword')?.getError('required')) {
+            <li>rePassword is required</li>
+            }
+            <li>rePassword doesn't match password</li>
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="mb-6">
+      @let phoneControl =registerForm.get('phone');
+      <label
+        for="uPhone"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >{{ "register.phone" | translate }} :</label
+      >
+      <input
+        formControlName="phone"
+        type="tel"
+        id="uPhone"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+
+      @if(phoneControl?.invalid && phoneControl?.touched) {
+      <div
+        class="my-3 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 border-red-300 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+          />
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+          <span class="font-medium"
+            >Ensure that these requirements are met:</span
+          >
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (phoneControl?.getError('required')) {
+            <li>phone is required</li>
+            } @if (phoneControl?.getError('pattern')) {
+            <li>only egyptian phone numbers accepted</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+    @if(errorMsg) {
+    <p
+      class="text-center my-3 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 border-red-300 dark:bg-gray-800 dark:text-red-400"
+    >
+      {{ errorMsg }}
+    </p>
+    } @if(successMsg) {
+    <p
+      class="text-center my-3 p-4 mb-4 text-sm text-[#6d2e46] rounded-lg bg-green-100 border-green-300 dark:bg-gray-800 dark:text-green-400"
+    >
+      {{ successMsg }}
+    </p>
+    }
+    <button
+      type="submit"
+      [disabled]="isLoading"
+      class="disabled:bg-green-300 bg-[#6d2e46] py-2 px-4 cursor-pointer rounded-lg text-white hover:bg-[#a26769] transition-all duration-200 mx-auto block"
+    >
+      {{ "register.register" | translate }} @if (isLoading) {
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      }
+    </button>
+  </form>
+</section>

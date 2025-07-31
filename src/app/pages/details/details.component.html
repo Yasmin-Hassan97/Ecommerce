@@ -1,0 +1,39 @@
+@if (prodData) {
+<section class="mt-20 p-5">
+  <h1 class="text-center text-4xl text-[#6d2e46] capitalize font-bold">
+    product details
+  </h1>
+
+  <div class="grid md:grid-cols-[20%_minmax(0,1fr)] items-center">
+    <div>
+      <img [src]="prodData.imageCover" [alt]="prodData.title" />
+    </div>
+
+    <div class="p-5">
+      <h2>{{ prodData.title.split(" ", 2).join(" ") }}</h2>
+      <p class="text-gray-700 my-2">{{ prodData.description }}</p>
+      <div
+        class="flex items-center justify-between my-4 text-[#6d2e46] text-xl"
+      >
+        <h3>{{ prodData.category.name }}</h3>
+        <app-wish-list-icon [productId]="prodData._id" class="cursor-pointer" />
+      </div>
+      <div class="flex justify-between items-center">
+        <span>{{ prodData.price }} EGP</span>
+        <div class="flex items-center">
+          <i class="fas fa-star text-yellow-300"></i>
+          <span class="text-gray-500">{{ prodData.ratingsAverage }}</span>
+        </div>
+      </div>
+
+      <button
+        (click)="addProductToCart(prodData._id)"
+        class="my-16 capitalize py-2 px-4 text-white rounded-lg w-[70%] block mx-auto bg-[#6d2e46] cursor-pointer hover:bg-[#a26769] transtion duration-700"
+      >
+        add to cart <i class="fas fa-cart-plus ms-3"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+}

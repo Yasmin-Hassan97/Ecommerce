@@ -1,0 +1,25 @@
+<section class="mt-20 p-5">
+  <h1 class="text-[#6d2e46] font-bold text-4xl text-center mb-10">
+    All Our Brands <i class="fa-solid fa-copyright"></i>
+  </h1>
+  <div class="parent grid md:grid-cols-4 gap-8">
+    @for ( brand of myBrands; track brand._id) {
+    <div
+      class="card group rounded-2xl bg-[#ece2d0] shadow-xl relative p-5 overflow-hidden h-[350px] hover:shadow-[#facdce] transition duration-700"
+    >
+      <div class="cursor-pointer">
+        <div class="card-img group-hover:scale-110 transition duration-700">
+          <img
+            [src]="brand.image"
+            class="mx-auto object-contain mt-7 rounded-2xl w-full"
+            alt=""
+          />
+        </div>
+        <div class="card-body text-center p-4">
+          <h3 class="font-bold text-2xl py-4">{{ brand.name }}</h3>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

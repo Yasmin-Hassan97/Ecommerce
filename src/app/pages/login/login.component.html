@@ -1,0 +1,130 @@
+<section class="w-1/2 mx-auto shadow rounded-lg bg-gray-200 mt-20 p-5">
+  <h1 class="text-[#6d2e46] text-center text-2xl font-bold">
+    {{ "login.loginNow" | translate }} !
+  </h1>
+  <form [formGroup]="LoginForm" (ngSubmit)="submitForm()">
+    <div class="mb-6">
+      @let emailControl =LoginForm.get('email');
+      <label
+        for="uEmail"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >{{ "login.email" | translate }} :</label
+      >
+      <input
+        formControlName="email"
+        type="email"
+        id="uEmail"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+
+      @if(emailControl?.invalid && emailControl?.touched) {
+      <div
+        class="my-3 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 border-red-300 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+          />
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+          <span class="font-medium"
+            >Ensure that these requirements are met:</span
+          >
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (emailControl?.getError('required')) {
+            <li>Email is required</li>
+            } @if (emailControl?.getError('email')) {
+            <li>invalid email</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="mb-6">
+      @let passwordControl =LoginForm.get('password');
+      <label
+        for="uPassword"
+        class="block mb-2 text-lg font-light text-[#6d2e46] dark:text-white"
+        >{{ "login.password" | translate }}:</label
+      >
+      <input
+        formControlName="password"
+        type="password"
+        id="uPassword"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#a26769] focus:border-[#a26769] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+
+      @if(passwordControl?.invalid && passwordControl?.touched) {
+      <div
+        class="my-3 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 border-red-300 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <svg
+          class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+          />
+        </svg>
+        <span class="sr-only">Danger</span>
+        <div>
+          <span class="font-medium"
+            >Ensure that these requirements are met:</span
+          >
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (passwordControl?.getError('required')) {
+            <li>password is required</li>
+            } @if (passwordControl?.getError('pattern')) {
+            <li>
+              password must start with capital character and consist of at least
+              6 characters
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    @if(errorMsg) {
+    <p
+      class="text-center my-3 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 border-red-300 dark:bg-gray-800 dark:text-red-400"
+    >
+      {{ errorMsg }}
+    </p>
+    } @if(successMsg) {
+    <p
+      class="text-center my-3 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100 border-green-300 dark:bg-gray-800 dark:text-green-400"
+    >
+      {{ successMsg }}
+    </p>
+    }
+
+    <a routerLink="/forgot" class="font-bold text-[#6d2e46]">{{
+      "login.forgotPassword" | translate
+    }}</a>
+    <button
+      type="submit"
+      [disabled]="isLoading"
+      class="disabled:bg-green-300 bg-[#6d2e46] py-2 px-4 cursor-pointer rounded-lg text-white hover:bg-[#a26769] transition-all duration-200 mx-auto block"
+    >
+      {{ "login.login" | translate }} @if (isLoading) {
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      }
+    </button>
+  </form>
+</section>

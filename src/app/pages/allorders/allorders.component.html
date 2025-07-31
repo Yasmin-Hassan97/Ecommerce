@@ -1,0 +1,62 @@
+<section class="w-[75%] mx-auto mt-30 p-5 bg-[#ece2d0] rounded-2xl shadow-lg">
+  <h3 class="text-center text-[#6d2e46] font-bold text-2xl py-6 capitalize">
+    Welcome {{ userData.name }} !<br />
+    <span>
+      Here are your latest orders
+      <i class="fa-regular fa-face-smile-beam"></i> :</span
+    >
+  </h3>
+
+  <!-- cart item -->
+
+  @for ( order of userOrders.cartItems ; track order._id) {
+  <div
+    class="grid md:grid-cols-[10%_minmax(0,1fr)] gab-4 border-b border-gray-300 py-6"
+  >
+    <!-- img -->
+
+    <div class="me-5">
+      <img
+        [src]="order.product.imageCover"
+        alt=""
+        class="w-full h-[100px] object-contain rounded-lg shadow-lg"
+      />
+    </div>
+
+    <!-- info -->
+
+    <div class="flex justify-between items-center">
+      <div>
+        <h3 class="text-gray-700 font-bold">
+          {{ order.product.title }}
+        </h3>
+        <h4 class="text-[#a26769] font-bold capitalize">
+          <span class="text-[#6d2e46]"> Brand : </span>
+          {{ order.product.brand.name }}
+        </h4>
+
+        <h4 class="text-[#a26769] font-bold capitalize">
+          <span class="text-[#6d2e46]">category : </span>
+          {{ order.product.category.name }}
+        </h4>
+
+        <h4 class="text-[#a26769] font-bold">
+          <span class="text-[#6d2e46] capitalize">price of one piece : </span>
+          {{ order.price + " EGP" }}
+        </h4>
+        <h4 class="text-[#a26769] font-bold">
+          <span class="text-[#6d2e46] capitalize">count : </span
+          >{{ order.count }}
+        </h4>
+        @if (order.count>1) {
+        <h4 class="text-[#a26769] font-bold">
+          <span class="text-[#6d2e46] capitalize">total Price : </span>
+          {{ order.price * order.count + " EGP" }}
+        </h4>
+        }
+      </div>
+    </div>
+  </div>
+
+  }
+</section>
